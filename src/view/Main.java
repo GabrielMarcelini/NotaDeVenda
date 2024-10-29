@@ -1,17 +1,14 @@
 package view;
 
-import java.util.Scanner;
-
-import model.*;
+import model.Product;
+import model.Sale;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ISaleFactory saleFactory = new SaleFactory();
-        IProductFactory productFactory = new ProductFactory();
-        ISale sale = saleFactory.createSale();
+        Sale sale = new Sale();
         boolean continueAdding = true;
 
         while (continueAdding) {
@@ -23,11 +20,10 @@ public class Main {
 
             System.out.println("Enter the quantity purchased:");
             int quantity = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine(); // Consume the newline
 
-            IProduct product = productFactory.createProduct(name, price);
-            ISaleItem saleItem = saleFactory.createSaleItem(product, quantity);
-            sale.addItem(saleItem);
+            Product product = new Product(name, price);
+            sale.addItem(product, quantity);
 
             System.out.println("Do you want to add another product? (y/n)");
             String response = scanner.nextLine();
@@ -37,7 +33,7 @@ public class Main {
         displayReceipt(sale);
     }
 
-    private static void displayReceipt(ISale sale) {
+    private static void displayReceipt(Sale sale) {
         System.out.println("********* RECEIPT *********");
         System.out.println("Product\tQty\tPrice\tSubtotal");
         sale.getItems().forEach(item -> {
