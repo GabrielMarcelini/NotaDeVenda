@@ -1,22 +1,25 @@
 package model;
 
-public class SaleItem {
-    private Product product;
+public class SaleItem implements ISaleItem {
+    private IProduct product;
     private int quantity;
 
-    public SaleItem(Product product, int quantity) {
+    public SaleItem(IProduct product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }
 
+    @Override
     public double getSubtotal() {
         return product.getPrice() * quantity;
     }
 
-    public Product getProduct() {
+    @Override
+    public IProduct getProduct() {
         return product;
     }
 
+    @Override
     public int getQuantity() {
         return quantity;
     }

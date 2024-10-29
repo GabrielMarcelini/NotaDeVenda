@@ -3,22 +3,25 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sale {
-    private List<SaleItem> items;
+public class Sale implements ISale {
+    private List<ISaleItem> items;
 
     public Sale() {
         this.items = new ArrayList<>();
     }
 
-    public void addItem(Product product, int quantity) {
-        this.items.add(new SaleItem(product, quantity));
+    @Override
+    public void addItem(ISaleItem item) {
+        this.items.add(item);
     }
 
+    @Override
     public double calculateTotal() {
-        return items.stream().mapToDouble(SaleItem::getSubtotal).sum();
+        return items.stream().mapToDouble(ISaleItem::getSubtotal).sum();
     }
 
-    public List<SaleItem> getItems() {
+    @Override
+    public List<ISaleItem> getItems() {
         return items;
     }
 }

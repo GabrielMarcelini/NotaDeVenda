@@ -4,5 +4,5 @@
 /**
  * 
  */
-module NotaDeVendas {
+module NotaDeVenda {
 }

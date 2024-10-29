@@ -1,6 +1,6 @@
 package model;
 
-public class Product {
+public class Product implements IProduct {
     private String name;
     private double price;
 
@@ -9,10 +9,12 @@ public class Product {
         this.price = price;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public double getPrice() {
         return price;
     }
